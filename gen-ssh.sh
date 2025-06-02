@@ -8,6 +8,8 @@ fi
 KEY="$HOME/.ssh/id_ed25519"
 if [ ! -f "$KEY" ]; then
   ssh-keygen -t ed25519 -C "raspberrypi" -f "$KEY" -N ""
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_ed25519
 fi
 read -p "Enter the remote username: " REMOTE_USER
 read -p "Enter the remote IP or hostname: " REMOTE_HOST
